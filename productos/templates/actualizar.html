@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Actualizar producto{% endblock %}
+
+{% block content %}
+<h1>Actualizar producto</h1>
+<form action="{% url 'productos:actualizar_producto' producto.id %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="nombre" value="{{ producto.nombre }}">
+    <input type="hidden" name="id" value="{{ producto.id }}"> {# Agregamos un campo oculto para el ID del producto #}
+    <div class="mb-3">
+        <label for="precio" class="form-label">Precio</label>
+        <input type="number" class="form-control" id="precio" name="precio" value="{{ producto.precio }}">
+    </div>
+    <div class="mb-3">
+        <label for="cantidad" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" id="cantidad" name="cantidad" value="{{ producto.cantidad }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>
+{% endblock %}
